@@ -2,7 +2,7 @@
 
 UrbanMind AI is a smart, AI-driven city planning prototype built for Hackathons. It simulates real-time urban analysis across multiple city zones (currently focused on Coimbatore, India) to provide actionable recommendations, optimize urban growth, and calculate the estimated impact of architectural interventions.
 
-![UrbanMind AI Dashboard](frontend/assets/maps/coimbatore-map.png)
+
 
 ## 🌟 Key Features
 
