@@ -1,0 +1,74 @@
+export const zonesData = [
+  {
+    "id": 1,
+    "name": "RS Puram Core",
+    "type": "Mixed Use",
+    "metrics": {
+      "amenity_score": 92,
+      "traffic_stress": 78,
+      "green_cover": 18,
+      "economic_activity": 90,
+      "population_density": 15500
+    }
+  },
+  {
+    "id": 2,
+    "name": "Gandhipuram Transport Hub",
+    "type": "Commercial",
+    "metrics": {
+      "amenity_score": 58,
+      "traffic_stress": 95,
+      "green_cover": 6,
+      "economic_activity": 88,
+      "population_density": 18000
+    }
+  },
+  {
+    "id": 3,
+    "name": "Peelamedu IT Corridor",
+    "type": "Mixed Use",
+    "metrics": {
+      "amenity_score": 70,
+      "traffic_stress": 84,
+      "green_cover": 12,
+      "economic_activity": 94,
+      "population_density": 12800
+    }
+  },
+  {
+    "id": 4,
+    "name": "Singanallur Lake Belt",
+    "type": "Residential",
+    "metrics": {
+      "amenity_score": 48,
+      "traffic_stress": 62,
+      "green_cover": 28,
+      "economic_activity": 55,
+      "population_density": 9200
+    }
+  },
+  {
+    "id": 5,
+    "name": "Ukkadam Dense Housing",
+    "type": "Residential",
+    "metrics": {
+      "amenity_score": 34,
+      "traffic_stress": 82,
+      "green_cover": 5,
+      "economic_activity": 42,
+      "population_density": 21000
+    }
+  },
+  {
+    "id": 6,
+    "name": "Saibaba Colony",
+    "type": "Residential",
+    "metrics": {
+      "amenity_score": 82,
+      "traffic_stress": 48,
+      "green_cover": 22,
+      "economic_activity": 60,
+      "population_density": 11200
+    }
+  }
+];

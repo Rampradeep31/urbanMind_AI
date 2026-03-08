@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UrbanMind AI | City Planning Copilot</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fa-solid fa-city"></i>
+                    <span>UrbanMind AI</span>
+                </div>
+                <p class="subtitle">City Planning Copilot</p>
+            </div>
+
+            <div class="control-group">
+                <label for="zone-select">Select Zone (Coimbatore)</label>
+                <div class="custom-select">
+                    <select id="zone-select">
+                        <option value="" disabled selected>Choose a zone to analyze...</option>
+                        <!-- Options generated dynamically -->
+                    </select>
+                </div>
+            </div>
+
+            <div class="priority-alert-panel">
+                <h3>Priority Alerts</h3>
+                <ul class="alert-list" id="alert-list">
+                    <!-- Alerts generated dynamically -->
+                </ul>
+            </div>
+
+            <div class="action-footer" style="margin-top:auto">
+                <button id="btn-report" class="btn btn-outline" style="width:100%" disabled>
+                    <i class="fa-solid fa-file-pdf"></i> Generate Planning Report
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="header-info">
+                    <h1 id="active-zone-name">Select a Zone</h1>
+                    <span id="active-zone-type" class="badge">Awaiting selection</span>
+                </div>
+                <button id="btn-analyze" class="btn btn-primary" disabled>
+                    <i class="fa-solid fa-microchip"></i> Run AI Analysis
+                </button>
+            </header>
+
+            <div class="content-grid">
+                <!-- Metrics Dashboard -->
+                <div class="panel metrics-panel">
+                    <h2>Zone Metrics Dashboard</h2>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <i class="fa-solid fa-house-chimney-medical m-icon"></i>
+                            <div class="m-val"><span id="m-amenity">--</span>/100</div>
+                            <div class="m-label">Amenity Score</div>
+                            <div class="progress-bar"><div class="progress" id="p-amenity"></div></div>
+                        </div>
+                        <div class="metric-card">
+                            <i class="fa-solid fa-car-burst m-icon traffic"></i>
+                            <div class="m-val"><span id="m-traffic">--</span>/100</div>
+                            <div class="m-label">Traffic Stress</div>
+                            <div class="progress-bar traffic"><div class="progress" id="p-traffic"></div></div>
+                        </div>
+                        <div class="metric-card">
+                            <i class="fa-solid fa-leaf m-icon green"></i>
+                            <div class="m-val"><span id="m-green">--</span>%</div>
+                            <div class="m-label">Green Cover</div>
+                            <div class="progress-bar green"><div class="progress" id="p-green"></div></div>
+                        </div>
+                        <div class="metric-card">
+                            <i class="fa-solid fa-money-bill-trend-up m-icon econ"></i>
+                            <div class="m-val"><span id="m-econ">--</span>/100</div>
+                            <div class="m-label">Economic Activity</div>
+                            <div class="progress-bar econ"><div class="progress" id="p-econ"></div></div>
+                        </div>
+                        <div class="metric-card full-width">
+                            <i class="fa-solid fa-users m-icon pop"></i>
+                            <div class="m-val"><span id="m-pop">--</span></div>
+                            <div class="m-label">Population Density (per km²)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map View Placeholder -->
+                <div class="panel map-panel">
+                    <div class="map-controls">
+                        <span>Heatmap Overlay:</span>
+                        <button class="btn btn-sm" data-layer="none" class="active">None</button>
+                        <button class="btn btn-sm" data-layer="traffic">Traffic</button>
+                        <button class="btn btn-sm" data-layer="green_cover">Green Cover</button>
+                        <button class="btn btn-sm" data-layer="population">Population</button>
+                    </div>
+                    <div class="map-container">
+                        <img src="assets/maps/coimbatore-map.png" alt="Coimbatore Map" class="base-map">
+                        <img src="assets/heatmaps/traffic.png" class="heatmap-overlay" id="layer-traffic" style="opacity: 0;">
+                        <img src="assets/heatmaps/green_cover.png" class="heatmap-overlay" id="layer-green_cover" style="opacity: 0;">
+                        <img src="assets/heatmaps/population.png" class="heatmap-overlay" id="layer-population" style="opacity: 0;">
+                        <div class="map-overlay-text">SIMULATED ZONE MAPPING</div>
+                    </div>
+                </div>
+
+                <!-- AI Recommendation Panel -->
+                <div class="panel ai-panel">
+                    <h2><i class="fa-solid fa-sparkles"></i> AI Recommendation Panel</h2>
+                    <div id="ai-loading" class="hidden">
+                        <div class="spinner"></div>
+                        <p>UrbanMind AI is analyzing zoning patterns...</p>
+                    </div>
+                    
+                    <div id="ai-results" class="ai-results empty">
+                        <div class="placeholder-text">Run AI Analysis to generate insights.</div>
+                    </div>
+                </div>
+
+                <!-- Impact Estimator -->
+                <div class="panel impact-panel">
+                    <h2><i class="fa-solid fa-chart-line"></i> Impact Estimator</h2>
+                    <p class="desc">Simulate structural interventions to auto-calculate expected improvements locally.</p>
+                    
+                    <div class="impact-controls">
+                        <button class="btn btn-impact" data-intervention="Add Metro Station"><i class="fa-solid fa-train-subway"></i> Add Metro Station</button>
+                        <button class="btn btn-impact" data-intervention="Add Hospital"><i class="fa-solid fa-hospital"></i> Add Hospital</button>
+                        <button class="btn btn-impact" data-intervention="Add Park"><i class="fa-solid fa-tree"></i> Add Park</button>
+                        <button class="btn btn-impact" data-intervention="Add Tech Hub"><i class="fa-solid fa-laptop-code"></i> Add Tech Hub</button>
+                    </div>
+
+                    <div id="impact-results" class="impact-results hidden">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container"></div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
